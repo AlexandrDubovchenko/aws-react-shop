@@ -8,10 +8,10 @@ export function useAvailableProducts() {
   return useQuery<AvailableProduct[], AxiosError>(
     "available-products",
     async () => {
-      const res = await axios.get<AvailableProduct[]>(
-        `${API_PATHS.bff}/product/available`
+      const res = await axios.get<{ data: AvailableProduct[] }>(
+        `${API_PATHS.product}/products`
       );
-      return res.data;
+      return res.data.data;
     }
   );
 }
@@ -57,7 +57,7 @@ export function useUpsertAvailableProduct() {
 }
 
 export function useDeleteAvailableProduct() {
-  return useMutation((id: string) =>
+  return useMutation((id: number) =>
     axios.delete(`${API_PATHS.bff}/product/${id}`, {
       headers: {
         Authorization: `Basic ${localStorage.getItem("authorization_token")}`,
