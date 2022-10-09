@@ -1,7 +1,7 @@
 import * as Yup from "yup";
 
 export const ProductSchema = Yup.object({
-  id: Yup.string(),
+  id: Yup.number(),
   name: Yup.string().required().default(""),
   price: Yup.number().positive().required().defined().default(0),
   currency: Yup.string().required().default("$"),

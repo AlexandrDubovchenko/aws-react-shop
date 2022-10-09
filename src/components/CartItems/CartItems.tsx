@@ -26,13 +26,14 @@ export default function CartItems({ items, isEditable }: CartItemsProps) {
             key={cartItem.product.id}
           >
             {isEditable && <AddProductToCart product={cartItem.product} />}
-            <ListItemText
-              primary={cartItem.product.title}
-              secondary={cartItem.product.description}
-            />
+            <ListItemText primary={cartItem.product.name} />
             <Typography variant="body2">
-              {formatAsPrice(cartItem.product.price)} x {cartItem.count} ={" "}
-              {formatAsPrice(cartItem.product.price * cartItem.count)}
+              {formatAsPrice(cartItem.product.price, cartItem.product.currency)}{" "}
+              x {cartItem.count} ={" "}
+              {formatAsPrice(
+                cartItem.product.price * cartItem.count,
+                cartItem.product.currency
+              )}
             </Typography>
           </ListItem>
         ))}
@@ -43,7 +44,7 @@ export default function CartItems({ items, isEditable }: CartItemsProps) {
         <ListItem sx={{ padding: (theme) => theme.spacing(1, 0) }}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
-            {formatAsPrice(totalPrice)}
+            {formatAsPrice(totalPrice, "USD")}
           </Typography>
         </ListItem>
       </List>

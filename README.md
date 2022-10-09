@@ -1,5 +1,5 @@
-CloudFront Link - https://dlbd5koyx9htb.cloudfront.net/
-S3 Bucket Link - http://aws-shop-study-2.s3-website-us-east-1.amazonaws.com/
+CloudFront Link - https://d3p552t1xstph1.cloudfront.net/
+S3 Bucket Link - http://aws-shop-study-2.s3-website-eu-west-1.amazonaws.com
 # React-shop-cloudfront
 
 This is frontend starter project for nodejs-aws mentoring program. It uses the following technologies:

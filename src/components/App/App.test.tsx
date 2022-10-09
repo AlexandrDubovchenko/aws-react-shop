@@ -13,18 +13,20 @@ import { formatAsPrice } from "~/utils/utils";
 test("Renders products list", async () => {
   const products: AvailableProduct[] = [
     {
-      id: "1",
-      title: "Product 1",
-      description: "Product 1 description",
+      id: 1,
+      name: "Product 1",
       price: 1,
+      currency: "USD",
       count: 1,
+      image: "",
     },
     {
-      id: "2",
-      title: "Product 2",
-      description: "Product 2 description",
+      id: 2,
+      name: "Product 2",
       price: 2,
+      currency: "USD",
       count: 2,
+      image: "",
     },
   ];
   server.use(
@@ -47,7 +49,9 @@ test("Renders products list", async () => {
 
   await waitForElementToBeRemoved(() => screen.queryByText(/Loading/));
   products.forEach((product) => {
-    expect(screen.getByText(product.title)).toBeInTheDocument();
-    expect(screen.getByText(formatAsPrice(product.price))).toBeInTheDocument();
+    expect(screen.getByText(product.name)).toBeInTheDocument();
+    expect(
+      screen.getByText(formatAsPrice(product.price, product.currency))
+    ).toBeInTheDocument();
   });
 });
