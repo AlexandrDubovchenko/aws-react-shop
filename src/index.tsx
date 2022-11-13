@@ -8,6 +8,23 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { theme } from "~/theme";
 import { worker } from "./mocks/browser";
+import axios from "axios";
+
+axios.interceptors.response.use((response) => {
+    console.log("response", JSON.stringify(response));
+    return response;
+  },
+  (error) => {
+    const responseStatus = error.response.status;
+
+    if (responseStatus === 400) {
+      alert(error.response.data?.message);
+    }
+
+    if (responseStatus === 403 || responseStatus === 401) {
+      alert(error.response.data?.message);
+    }
+  })
 
 const queryClient = new QueryClient({
   defaultOptions: {
